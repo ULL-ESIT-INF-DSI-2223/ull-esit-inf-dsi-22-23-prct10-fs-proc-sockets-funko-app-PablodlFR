@@ -10,7 +10,7 @@ El código fuente de ambos ejercicios se encuentra organizado en diferentes dire
 ### Ejercicio 3 - Cliente y servidor para la aplicación de registro de Funko Pops 
 ## Conclusión
 Al igual que en las prácticas anteriores se han incluido los flujos de trabajo de GitHub Actions:
-* Tests: 
+* Tests: [![Tests](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct10-fs-proc-sockets-funko-app-PablodlFR/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct10-fs-proc-sockets-funko-app-PablodlFR/actions/workflows/node.js.yml)
 * Coveralls: 
 * Sonar-Cloud: 
 ## Bibliografía
