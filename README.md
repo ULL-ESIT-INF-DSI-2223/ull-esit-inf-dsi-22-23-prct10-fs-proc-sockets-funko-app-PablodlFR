@@ -1,5 +1,5 @@
 # Práctica 10 - APis asíncronas de gestión del sistema de ficheros, creación de procesos y creación de sockets de Node.js
-Esta práctica consiste en la realización de una serie de ejercicios que hacen uso de las APIs asíncronas de Node.js para la gestión del sistema de ficheros(_fs_), creación de procesos (_child\_proces_) y sockets (_net_). Además se mostrará el ejercicio realizado en la hora de prácticas (PE101).
+Esta práctica consiste en la realización de una serie de ejercicios que hacen uso de las APIs asíncronas de Node.js para la gestión del sistema de ficheros (_fs_), creación de procesos (_child\_proces_) y sockets (_net_). Además se mostrará el ejercicio realizado en la hora de prácticas (PE101).
 \
 \
 El código fuente de ambos ejercicios se encuentra organizado en diferentes directorios y se hace uso de sintaxis ES para importar/exportar las distintas entidades.
@@ -11,7 +11,7 @@ El código fuente de ambos ejercicios se encuentra organizado en diferentes dire
 ## Conclusión
 Al igual que en las prácticas anteriores se han incluido los flujos de trabajo de GitHub Actions:
 * Tests: [![Tests](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct10-fs-proc-sockets-funko-app-PablodlFR/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct10-fs-proc-sockets-funko-app-PablodlFR/actions/workflows/node.js.yml)
-* Coveralls: 
+* Coveralls: [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct10-fs-proc-sockets-funko-app-PablodlFR/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct10-fs-proc-sockets-funko-app-PablodlFR?branch=main)
 * Sonar-Cloud: 
 ## Bibliografía
 Para la realización de esta práctica se han consultado las siguientes fuentes bibliográficas:
