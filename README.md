@@ -6,6 +6,7 @@ El código fuente de ambos ejercicios se encuentra organizado en diferentes dire
 ## Ejercicio de clase
 ## Ejercicios de guion
 ### Ejercicio 1
+El primer ejercicio
 ### Ejercicio 2
 ### Ejercicio 3 - Cliente y servidor para la aplicación de registro de Funko Pops 
 ## Conclusión
