@@ -33,7 +33,6 @@ if (process.argv.length !== 3) {
 }
 ```
 \
-\
 #### Paso 1 (Ejecución del programa):
 *Consola:*
 ```bash
