@@ -202,8 +202,8 @@ File helloworld.txt is no longer watched
 File helloworld.txt has been modified somehow
 File helloworld.txt has been modified somehow
 ```
-* ¿Qué hace la función _access_? La función access es una función asíncrona del módulo _fs_ de Node.js, el cual acepta tres argumentos: nombre del fichero, una constante que explicaremos a continucación y un _callback_ que se ejecutará en caso de error.
-* Para qué sirve el objeto _constants_? Son una serie de constantes del módulo _fs_ que se usan en varias de sus funciones, para comprobar el modo de acceo de un archivo. La constante utilizada en este programa es _constants.F\_OK_, utilizada en la función access para verificar si un archivo existe. También existen otras constantes para comprobar si se puede leer un archivo, escribir, o ejecutar.
+* **¿Qué hace la función _access_?** La función access es una función asíncrona del módulo _fs_ de Node.js, el cual acepta tres argumentos: nombre del fichero, una constante que explicaremos a continuación y un _callback_ que se ejecutará en caso de error.
+* **Para qué sirve el objeto _constants_?** Son una serie de constantes del módulo _fs_ que se usan en varias de sus funciones, para comprobar el modo de acceo de un archivo. La constante utilizada en este programa es _constants.F\_OK_, utilizada en la función access para verificar si un archivo existe. También existen otras constantes para comprobar si se puede leer un archivo, escribir, o ejecutar.
 
 ### Ejercicio 2
 ### Ejercicio 3 - Cliente y servidor para la aplicación de registro de Funko Pops 
