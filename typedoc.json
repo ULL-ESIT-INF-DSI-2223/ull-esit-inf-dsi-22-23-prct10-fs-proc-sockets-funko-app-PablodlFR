@@ -1,6 +1,6 @@
 {
   "entryPoints": [
-    "./src/ej-guion/ejercicio-3/funko-pops/funko.ts",
+    "./src/ej-guion/ejercicio-3/funko.ts",
     "./src/ej-guion/ejercicio-3/yargs.ts",
     "./src/ej-guion/ejercicio-3/utilities.ts"
   ],
