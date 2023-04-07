@@ -41,7 +41,7 @@
 <pre><code class="language-bash"><span class="hl-2">$node</span><span class="hl-1"> dist/ej-guion/ejercicio-</span><span class="hl-4">1</span><span class="hl-1">/watchfile.js helloworld.txt</span>
 </code></pre>
 <p>Como se ha especificado un archivo el cual existe, no se llegan a ejecutar los dos primeros <em>console.log()</em> del programa.
-<br><em>Pila de llamadas:</em></p>
+<br><br><em>Pila de llamadas:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-5">access</span><span class="hl-1">(</span><span class="hl-2">filename</span><span class="hl-1">, </span><span class="hl-2">constants</span><span class="hl-1">.</span><span class="hl-7">F_OK</span><span class="hl-1">, (</span><span class="hl-2">err</span><span class="hl-1">) </span><span class="hl-6">=&gt;</span><span class="hl-1"> {...});</span>
 </code></pre>
 <p><em>Registro de eventos de la API:</em></p>
@@ -55,11 +55,11 @@
   <h4>Paso 2:</h4>
 </a>
 <p>Como no se ha detectado ningún error en la función <em>access</em>, llega a la pila de llamadas el <em>console.log()</em> que indica que se está observando el archivo pasado por parámetro.
-<br><em>Pila de llamadas:</em></p>
+<br><br><em>Pila de llamadas:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`Starting to watch file </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3">`</span><span class="hl-1">);</span>
 </code></pre>
 <p>Se muestra dicho mensaje por consola.
-<br><em>Consola:</em></p>
+<br><br><em>Consola:</em></p>
 <pre><code class="language-bash"><span class="hl-2">$node</span><span class="hl-1"> dist/ej-guion/ejercicio-</span><span class="hl-4">1</span><span class="hl-1">/watchfile.js helloworld.txt</span><br/><span class="hl-1">Starting </span><span class="hl-3">to</span><span class="hl-1"> </span><span class="hl-3">watch</span><span class="hl-1"> </span><span class="hl-3">file</span><span class="hl-1"> </span><span class="hl-3">helloworld.txt</span>
 </code></pre>
 <p><em>Registro de eventos de la API:</em></p>
@@ -73,15 +73,15 @@
   <h4>Paso 3:</h4>
 </a>
 <p>Se llama a la función <em>watch</em> con el nombre del archivo a observar como argumento.
-<br><em>Pila de llamadas:</em></p>
+<br><br><em>Pila de llamadas:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-5">watch</span><span class="hl-1">(</span><span class="hl-2">process</span><span class="hl-1">.</span><span class="hl-2">argv</span><span class="hl-1">[</span><span class="hl-4">2</span><span class="hl-1">]);</span>
 </code></pre>
 <p>La consola sigue igual.
-<br><em>Consola:</em></p>
+<br><br><em>Consola:</em></p>
 <pre><code class="language-bash"><span class="hl-2">$node</span><span class="hl-1"> dist/ej-guion/ejercicio-</span><span class="hl-4">1</span><span class="hl-1">/watchfile.js helloworld.txt</span><br/><span class="hl-1">Starting </span><span class="hl-3">to</span><span class="hl-1"> </span><span class="hl-3">watch</span><span class="hl-1"> </span><span class="hl-3">file</span><span class="hl-1"> </span><span class="hl-3">helloworld.txt</span>
 </code></pre>
 <p>Se registra los eventros relacionado a la variable <em>watcher</em>, que acabamos de asignar con la función <em>watch</em>.
-<br><em>Registro de eventos de la API:</em></p>
+<br><br><em>Registro de eventos de la API:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-2">watcher</span><span class="hl-1">.</span><span class="hl-5">on</span><span class="hl-1">(</span><span class="hl-3">&#39;change&#39;</span><span class="hl-1">), () </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> has been modified somehow`</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
 </code></pre>
 <p><em>Cola de manejadores:</em></p>
@@ -92,11 +92,11 @@
   <h4>Paso 4:</h4>
 </a>
 <p>Como no se ha realizado todavía ninguna modificación, no salta el evento registrado anteriormente y llegamos al último <em>console.log()</em> del programa.
-<em>Pila de llamadas:</em></p>
+<br><br><em>Pila de llamadas:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> is no longer watched`</span><span class="hl-1">);</span>
 </code></pre>
 <p>Se ejecuta el <em>console.log()</em>.
-<br><em>Consola:</em></p>
+<br><br><em>Consola:</em></p>
 <pre><code class="language-bash"><span class="hl-2">$node</span><span class="hl-1"> dist/ej-guion/ejercicio-</span><span class="hl-4">1</span><span class="hl-1">/watchfile.js helloworld.txt</span><br/><span class="hl-1">Starting </span><span class="hl-3">to</span><span class="hl-1"> </span><span class="hl-3">watch</span><span class="hl-1"> </span><span class="hl-3">file</span><span class="hl-1"> </span><span class="hl-3">helloworld.txt</span><br/><span class="hl-1">File </span><span class="hl-3">helloworld.txt</span><span class="hl-1"> </span><span class="hl-3">is</span><span class="hl-1"> </span><span class="hl-3">no</span><span class="hl-1"> </span><span class="hl-3">longer</span><span class="hl-1"> </span><span class="hl-3">watched</span>
 </code></pre>
 <p><em>Registro de eventos de la API:</em></p>
@@ -113,15 +113,15 @@
 <pre><code class="language-TypeScript"><span class="hl-2">watcher</span><span class="hl-1">.</span><span class="hl-5">on</span><span class="hl-1">(</span><span class="hl-3">&#39;change&#39;</span><span class="hl-1">), () </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> has been modified somehow`</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
 </code></pre>
 <p>Se activa el evento correspondiente en el registro de eventos y este se envía a la cola de manejadores.
-<br><em>Cola de manejadores:</em></p>
+<br><br><em>Cola de manejadores:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-1">() </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> has been modified somehow`</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
 </code></pre>
 <p>Como la pila de llamadas hasta este momento se encuentra vacía, pasa a ejecutar sin problemas el <em>console.log()</em> de la cola de manejadores.
-<br><em>Pila de llamadas:</em></p>
+<br><br><em>Pila de llamadas:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> has been modified somehow`</span><span class="hl-1">);</span>
 </code></pre>
 <p>Se muestra dicho mensaje por consola.
-<br><em>Consola:</em></p>
+<br><br><em>Consola:</em></p>
 <pre><code class="language-bash"><span class="hl-2">$node</span><span class="hl-1"> dist/ej-guion/ejercicio-</span><span class="hl-4">1</span><span class="hl-1">/watchfile.js helloworld.txt</span><br/><span class="hl-1">Starting </span><span class="hl-3">to</span><span class="hl-1"> </span><span class="hl-3">watch</span><span class="hl-1"> </span><span class="hl-3">file</span><span class="hl-1"> </span><span class="hl-3">helloworld.txt</span><br/><span class="hl-1">File </span><span class="hl-3">helloworld.txt</span><span class="hl-1"> </span><span class="hl-3">is</span><span class="hl-1"> </span><span class="hl-3">no</span><span class="hl-1"> </span><span class="hl-3">longer</span><span class="hl-1"> </span><span class="hl-3">watched</span><br/><span class="hl-1">File </span><span class="hl-3">helloworld.txt</span><span class="hl-1"> </span><span class="hl-3">has</span><span class="hl-1"> </span><span class="hl-3">been</span><span class="hl-1"> </span><span class="hl-3">modified</span><span class="hl-1"> </span><span class="hl-3">somehow</span>
 </code></pre>
 
@@ -129,19 +129,19 @@
   <h4>Paso 6 (Segunda modificación del fichero):</h4>
 </a>
 <p>El registro de eventos se mantiene igual, a la espera de que su activación.
-<br><em>Registro de eventos de la API:</em></p>
+<br><br><em>Registro de eventos de la API:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-2">watcher</span><span class="hl-1">.</span><span class="hl-5">on</span><span class="hl-1">(</span><span class="hl-3">&#39;change&#39;</span><span class="hl-1">), () </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> has been modified somehow`</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
 </code></pre>
 <p>Se activa el evento correspondiente en el registro de eventos y este se envía a la cola de manejadores, la cual se había vaciado tras la finalización del paso anterior.
-<br><em>Cola de manejadores:</em></p>
+<br><br><em>Cola de manejadores:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-1">() </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> has been modified somehow`</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
 </code></pre>
 <p>Como la pila de llamadas volvía a estar vacía, pasa a ejecutar sin problemas el <em>console.log()</em> de la cola de manejadores.
-<br><em>Pila de llamadas:</em></p>
+<br><br><em>Pila de llamadas:</em></p>
 <pre><code class="language-TypeScript"><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-5">log</span><span class="hl-1">(</span><span class="hl-3">`File </span><span class="hl-6">${</span><span class="hl-2">filename</span><span class="hl-6">}</span><span class="hl-3"> has been modified somehow`</span><span class="hl-1">);</span>
 </code></pre>
 <p>Se muestra dicho mensaje por consola.
-<br><em>Consola:</em></p>
+<br><br><em>Consola:</em></p>
 <pre><code class="language-bash"><span class="hl-2">$node</span><span class="hl-1"> dist/ej-guion/ejercicio-</span><span class="hl-4">1</span><span class="hl-1">/watchfile.js helloworld.txt</span><br/><span class="hl-1">Starting </span><span class="hl-3">to</span><span class="hl-1"> </span><span class="hl-3">watch</span><span class="hl-1"> </span><span class="hl-3">file</span><span class="hl-1"> </span><span class="hl-3">helloworld.txt</span><br/><span class="hl-1">File </span><span class="hl-3">helloworld.txt</span><span class="hl-1"> </span><span class="hl-3">is</span><span class="hl-1"> </span><span class="hl-3">no</span><span class="hl-1"> </span><span class="hl-3">longer</span><span class="hl-1"> </span><span class="hl-3">watched</span><br/><span class="hl-1">File </span><span class="hl-3">helloworld.txt</span><span class="hl-1"> </span><span class="hl-3">has</span><span class="hl-1"> </span><span class="hl-3">been</span><span class="hl-1"> </span><span class="hl-3">modified</span><span class="hl-1"> </span><span class="hl-3">somehow</span><br/><span class="hl-1">File </span><span class="hl-3">helloworld.txt</span><span class="hl-1"> </span><span class="hl-3">has</span><span class="hl-1"> </span><span class="hl-3">been</span><span class="hl-1"> </span><span class="hl-3">modified</span><span class="hl-1"> </span><span class="hl-3">somehow</span>
 </code></pre>
 
