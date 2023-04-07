@@ -39,15 +39,15 @@ $node dist/ej-guion/ejercicio-1/watchfile.js helloworld.txt
 ```
 Como se ha especificado un archivo el cual existe, no se llegan a ejecutar los dos primeros _console.log()_ del programa.
 \
-**Pila de llamadas:**:
+**Pila de llamadas:**
 ```TypeScript
 access(filename, constants.F_OK, (err) => {...});
 ```
-**Registro de eventos de la API:**:
+**Registro de eventos de la API:**
 ```
 Vacía
 ```
-**Cola de manejadores:**:
+**Cola de manejadores:**
 ```
 Vacía
 ```

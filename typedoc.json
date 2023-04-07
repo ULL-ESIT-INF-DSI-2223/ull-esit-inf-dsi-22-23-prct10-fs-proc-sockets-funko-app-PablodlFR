@@ -1,14 +1,8 @@
 {
   "entryPoints": [
-    "./src/ej-clase/filtermapaddreduce.ts",
-    "./src/ej-clase/filtermapsubreduce.ts",
-    "./src/ej-clase/filtermapprodreduce.ts",
-    "./src/ej-clase/filtermapdivreduce.ts",
-    "./src/ej-clase/filtermapreducetemplate.ts",
-    "./src/ej-clase/functions.ts",
-    "./src/funko-pops/funko.ts",
-    "./src/funko-pops/yargs.ts",
-    "./src/funko-pops/utilities.ts"
+    "./src/ej-guion/ejercicio-3/funko-pops/funko.ts",
+    "./src/ej-guion/ejercicio-3/yargs.ts",
+    "./src/ej-guion/ejercicio-3/utilities.ts"
   ],
   "out": "./docs" 
 }
