@@ -1,6 +1,6 @@
 import {readFile} from 'fs';
 import {spawn} from 'child_process';
-import yargs, { demandOption } from 'yargs';
+import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
 yargs(hideBin(process.argv))
