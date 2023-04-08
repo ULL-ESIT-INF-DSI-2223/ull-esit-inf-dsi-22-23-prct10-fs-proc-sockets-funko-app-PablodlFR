@@ -132,7 +132,7 @@ watcher.on('change'), () => {
 ```
 Vacía
 ```
-#### Paso 5 (Se realiza la primera modificación del fichero):
+#### Paso 5 (Primera modificación del fichero):
 *Registro de eventos de la API:*
 ```TypeScript
 watcher.on('change'), () => {
@@ -206,6 +206,153 @@ File helloworld.txt has been modified somehow
 * **Para qué sirve el objeto _constants_?** Son una serie de constantes del módulo _fs_ que se usan en varias de sus funciones, para comprobar el modo de acceo de un archivo. La constante utilizada en este programa es _constants.F\_OK_, utilizada en la función access para verificar si un archivo existe. También existen otras constantes para comprobar si se puede leer un archivo, escribir, o ejecutar.
 
 ### Ejercicio 2
+En este ejercicio debemos desarrollar una aplicación que nos permita obtener información sobre el número de líneas, palabras o caracteres de un fichero de texto, además de una combinación de ellos. Para esto haremos uso nuevamente del paquete _yargs_ para gestionar el paso de parámetros por la línea de comandos.
+\
+\
+Se nos pide hacer el ejercicio de dos formas distintas, es por ello que se ha dividido cada uno de los casos en ficheros distintos. En el primer caso debemos de usar el método _pipe_ para redirigir las salidas de los comandos, mientras que de la segunda forma, no se utilizará este método, sino que se llevará a cavo con eventos y sus respectivos manejadores. Todo esto se hará programando defensivamente, para así controlar los errores.
+#### Caso 1. Haciendo uso del método pipe.
+El código es el siguiente:
+```TypeScript
+yargs(hideBin(process.argv))
+/**
+ * Command wc, to count the number of words, lines and characters from a text file.
+ * Options:
+ *    - l -> lines.
+ *    - w -> words.
+ *    - m -> characters.
+ */
+  .boolean(['l', 'w', 'm'])
+  .command('wc', 'word count of a text file', {
+    file: {
+      description: 'the file\'s name',
+      type: 'string',
+      demandOption: true
+    }
+  }, (argv) => {
+    readFile(argv.file, (err) => {
+      if (err) {
+        console.log(`No existe el fichero ${argv.file}`)
+      }
+
+      if (argv.l) {     
+        const wcl = spawn('wc', ['-l', argv.file]);     
+        const cut = spawn('cut', ['-d', ' ', '-f', '1']); 
+
+        wcl.stdout.pipe(cut.stdin);
+        cut.stdout.pipe(process.stdout);
+      }
+
+      if (argv.w) {        
+        const wcw = spawn('wc', ['-w', argv.file]);     
+        const cut = spawn('cut', ['-d', ' ', '-f', '1']); 
+
+        wcw.stdout.pipe(cut.stdin);
+        cut.stdout.pipe(process.stdout);
+      }
+
+      if (argv.m) {
+        const wcm = spawn('wc', ['-m', argv.file]);     
+        const cut = spawn('cut', ['-d', ' ', '-f', '1']); 
+
+        wcm.stdout.pipe(cut.stdin);
+        cut.stdout.pipe(process.stdout);
+      }
+
+      if (argv.l === undefined && argv.w === undefined && argv.m === undefined) {
+        console.log('No ha utilizado ninguna de las opciones posibles (--l, --w, --m)');
+      }
+    })
+  })
+```
+Como podemos observar en el código anterior se declaran de forma _booleana_ las 3 opciones posibles y en el comando _wc_ declaramos una opción obligatoria que es _file_, para indicar el fichero que se desea analizar.
+\
+\
+Una vez introducido el comando por consola, se comprueba si dicho fichero existe, controlando así los errores, tal y como se pedía en el enunciado. Dependiendo de los argumentos pasados en la línea de comando se mostrará una opción u otra, en todos los casos, primero se ejecuta el comando _wc_ con la opción pertinente, gracias a la función _spawn()_, posteriormente haciendo uso de _pipe()_ pasamos la salida de _wc_ a la entrada del comando _cut_, para así obtener solo el número deseado, obviando el nombre del fichero. Finalmente, se envía la salida del comando _cut_ por la salida estándar, haciendo uso una vez más de _pipe()_. También se tiene en cuenta el caso de que el usuario no introduzca ninguna de las posibles opciones en el comando, en dicho caso saltará un mensaje indicado al usuario las posibles opciones a utilizar.
+\
+\
+Ejemplos de uso:
+```bash
+$node dist/ej-guion/ejercicio-2/ej-2-pipe wc --file helloworld.txt --l
+3
+$node dist/ej-guion/ejercicio-2/ej-2-pipe wc --file helloworld.txt --w
+4
+$node dist/ej-guion/ejercicio-2/ej-2-pipe wc --file helloworld.txt --m
+20
+$node dist/ej-guion/ejercicio-2/ej-2-pipe wc --file helloworld.txt --l --w --m
+3
+4
+20
+$node dist/ej-guion/ejercicio-2/ej-2-pipe wc --file helloworld.txt
+No ha utilizado ninguna de las opciones posibles (--l, --w, --m)
+```
+#### Caso 2. Sin hacer uso del método pipe.
+El programa es el siguiente:
+```TypeScript
+yargs(hideBin(process.argv))
+/**
+ * Command wc, to count the number of words, lines and characters from a text file.
+ * Options:
+ *    - l -> lines.
+ *    - w -> words.
+ *    - m -> characters.
+ */
+  .boolean(['l', 'w', 'm'])
+  .command('wc', 'word count of a text file', {
+    file: {
+      description: 'the file\'s name',
+      type: 'string',
+      demandOption: true
+    }
+  }, (argv) => {
+    readFile(argv.file, (err) => {
+      if (err) {
+        console.log(`No existe el fichero ${argv.file}`)
+      }
+
+      const wc = spawn('wc', [argv.file]);
+
+      let wcOutput = '';
+      wc.stdout.on('data', (data) => wcOutput += data);
+
+      wc.on('close', () => {
+        const wcOutputArray = wcOutput.split(" ");        
+        if (argv.l) {
+          console.log(`El fichero ${argv.file} tiene ${wcOutputArray[1]} líneas.`);
+        }
+        if (argv.w) {
+          console.log(`El fichero ${argv.file} tiene ${wcOutputArray[3]} palabras.`);
+        }
+        if (argv.m) {
+          console.log(`El fichero ${argv.file} tiene ${wcOutputArray[4]} caracteres.`);
+        }
+        if (argv.l === undefined && argv.w === undefined && argv.m === undefined) {
+          console.log('No ha utilizado ninguna de las opciones posibles (--l, --w, --m)');
+        }
+      });
+
+      wc.on('error', (err) => {
+        console.error('Error al ejecutar el comando', err);
+      });
+    })
+  })
+```
+En esta ocasión no utilizamos el método pipe(), lo primero es ejecutar el comando _wc_ con el método _spawn()_ y guardar dichos datos en una variable, por si no llegaran todos a la vez, tal y como vimos en el aula haciendo uso del evento 'data'. A continuación, le damos forma a esos datos una vez se hayan terminado de obtener, gracias al método 'close', imprimiendo por pantalla solo aquella información solicitada por el usuario. Con este programa, vemos claramente la diferencia de usar eventos y sus manejadores, con los _pipe()_ del primer programa. En cuanto al control de errores, se repiten los comentados en el anterior ejercicio y además se añade un evento 'error', que salta cuando se produzca un error durante la ejecución del comando.
+\
+\
+Ejemplos de uso:
+```bash
+$node dist/ej-guion/ejercicio-2/ej-2-nopipe wc --file helloworld.txt --l
+El fichero helloworld.txt tiene 3 líneas.
+$node dist/ej-guion/ejercicio-2/ej-2-nopipe wc --file helloworld.txt --w
+El fichero helloworld.txt tiene 4 palabras.
+$node dist/ej-guion/ejercicio-2/ej-2-nopipe wc --file helloworld.txt --m
+El fichero helloworld.txt tiene 20 caracteres.
+$node dist/ej-guion/ejercicio-2/ej-2-pipe wc --file helloworld.txt --l --w
+El fichero helloworld.txt tiene 3 líneas.
+El fichero helloworld.txt tiene 4 palabras.
+$node dist/ej-guion/ejercicio-2/ej-2-pipe wc --file helloworld.txt
+No ha utilizado ninguna de las opciones posibles (--l, --w, --m)
+```
 ### Ejercicio 3 - Cliente y servidor para la aplicación de registro de Funko Pops 
 ## Conclusión
 Al igual que en las prácticas anteriores se han incluido los flujos de trabajo de GitHub Actions:
