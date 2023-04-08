@@ -2,7 +2,9 @@
   "entryPoints": [
     "./src/ej-guion/ejercicio-3/funko.ts",
     "./src/ej-guion/ejercicio-3/yargs.ts",
-    "./src/ej-guion/ejercicio-3/utilities.ts"
+    "./src/ej-guion/ejercicio-3/utilities.ts",
+    "./src/ej-guion/ejercicio-2/ej-2-pipe.ts",
+    "./src/ej-guion/ejercicio-2/ej-2-nopipe.ts"
   ],
   "out": "./docs" 
 }
