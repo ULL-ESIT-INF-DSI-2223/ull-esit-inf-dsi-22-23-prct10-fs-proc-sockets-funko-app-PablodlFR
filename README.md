@@ -69,7 +69,7 @@ if (process.argv.length < 2) {
     })
 };
 ```
-Primero se conecta al servidor creado previamente gracias a la función _connect()_ y posteriormente se comprueba que se ha enviado por la línea de comandos algún argumento, si es así, se crea un _JSON_ con el comando que se desea ejecutar y sus argumentos. El mensaje se envía al servidor, donde se ejecuta como comentamos anteriormente y en el cliente, dentro del evento 'data' se procesa el mensaje con la respuesta y se imprime por pantalla, posteiormente se cierra la comunicación, indicándole al usuario que todo ha ido correctamente.
+Primero se conecta al servidor creado previamente gracias a la función _connect()_ y posteriormente se comprueba que se ha enviado por la línea de comandos algún argumento, si es así, se crea un _JSON_ con el comando que se desea ejecutar y sus argumentos. El mensaje se envía al servidor, donde se ejecuta como comentamos anteriormente y en el cliente, dentro del evento 'data' se procesa el mensaje con la respuesta y se imprime por pantalla, posteriormente se cierra la comunicación, indicándole al usuario que todo ha ido correctamente.
 \
 \
 A continuación veremos un ejemplo de su funcionamiento:
@@ -860,7 +860,7 @@ yargs(hideBin(process.argv))
   .help()
   .argv;
 ```
-En el cliente es donde se encuentra toda el procesamiento de los comandos gracias a _yargs_. Primero se conecta al servidor del mismo puerto (60301) y dependiendo del comando que use el usuario se envía un tipo de mensaje JSON u otro al servidor, que cómo vimos antes, el servidor procesa la petición y crea un mensahe de vuelta, el cual es motrado por la consola del cliente, gracias al evento 'data'.
+En el cliente es donde se encuentra toda el procesamiento de los comandos gracias a _yargs_. Primero se conecta al servidor del mismo puerto (60301) y dependiendo del comando que use el usuario se envía un tipo de mensaje JSON u otro al servidor, que cómo vimos antes, el servidor procesa la petición y crea un mensaje de vuelta, el cual es motrado por la consola del cliente, gracias al evento 'data'.
 \
 \
 A continuación mostraremos como ejemplo del funcionamiento tanto del cliente como del servidor mostrado anteriormente la ejecución del comando _read_:
